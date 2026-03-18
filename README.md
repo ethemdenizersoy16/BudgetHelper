@@ -1,5 +1,5 @@
 # BudgetHelper
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 BudgetHelper is a machine-learning-powered personal finance engine and command-line interface (CLI). It moves beyond traditional expense tracking by utilizing a Dual-Track Linear Regression model to forecast end-of-month financial realities, strictly separating behavioral spending habits from structural net worth.
 
