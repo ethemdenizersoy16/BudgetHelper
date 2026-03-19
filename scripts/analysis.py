@@ -70,7 +70,7 @@ def prediction(dataframe_t,stats, budgets, curs):
      monthly_daily = max((budgets[1] + monthly_spent)/max(days_left, 1),0)
      total_daily = max((budgets[0] + total_spent)/max(days_left,1),0)
 
-     daily = min(total_daily , monthly_daily)#the daily limit is made to make sure you 1)do not exceed total budget and 2) you do not exceed monthly budget in this order
+     daily = min(total_daily , monthly_daily) if budgets[1] != 0 else total_daily #the daily limit is made to make sure you 1)do not exceed total budget and 2) you do not exceed monthly budget in this order
 
      worst_total_budget = total_spent + budgets[0] + (total_worst_case - struct_cumsum)
      worst_monthly_budget = monthly_spent + budgets[1] + (monthly_worst_case - expense_cumsum)

@@ -42,12 +42,13 @@ def status(curs, purpose = 0):#0 is for general status, 1 is for warnings
      total_budget = budgets[0]
      monthly_budget = budgets[1]
 
+
+
      curs.execute("""SELECT COALESCE(SUM(CASE WHEN category_id != 1 AND category_id != 12 THEN - amount ELSE 0 END),0)
                   +COALESCE(SUM(CASE WHEN category_id == 1 OR category_id == 12 THEN amount ELSE 0 END),0)
                   FROM transactions""")
 
      total_spent = curs.fetchone()[0]
-
      curs.execute("""SELECT COALESCE(SUM(CASE WHEN category_id != 1 AND category_id != 12 THEN - amount ELSE 0 END),0)
                   FROM transactions WHERE date_recorded >= date('now','start of month')""")
      
@@ -59,7 +60,8 @@ def status(curs, purpose = 0):#0 is for general status, 1 is for warnings
      if purpose == 0: 
         print("\n--- Financial Status ---")
         print(f"Current Total Budget: {total_remaining:.2f}")
-        print(f"Monthly Spending Budget: {monthly_budget:.2f} | Remaining: {monthly_remaining:.2f}")
+        if monthly_budget != 0:
+            print(f"Monthly Spending Budget: {monthly_budget:.2f} | Remaining: {monthly_remaining:.2f}")
         print(f"Spent this month: {-1 * monthly_spent:.2f}")
      if monthly_budget > 0 and monthly_remaining < 0:
         print("""-------------------------------------------
@@ -87,10 +89,13 @@ def transaction_control(conn,curs,id_map):
         elif user_input.lower() == "status":
              status(curs)
              data = analysis.analysis(conn,curs)
+             curs.execute("""SELECT total_budget, monthly_budget FROM budget WHERE id = 1""")
+             budgets = curs.fetchone()
              print("-------------------------------------------------------")
              print(f"Predicted Total Budget: {data[0]:.2f}")
-             print(f"Predicted Monthly Budget: {data[1]:.2f}")
-             if data[1] < 0 or data[0] < 0:
+             if budgets[1] != 0:
+                print(f"Predicted Monthly Budget: {data[1]:.2f}")
+             if (budgets[1] != 0 and data[1] < 0) or data[0] < 0:
                   print("You are spending way too quickly, be careful!")
              print("-------------------------------------------------------")
              print(f"Your daily net flow for the past week: {data[3]:.2f}")
@@ -206,14 +211,18 @@ while True:
     elif user_input.lower() == "status":
              status(curs)
              data = analysis.analysis(conn,curs)
+             curs.execute("""SELECT total_budget, monthly_budget FROM budget WHERE id = 1""")
+             budgets = curs.fetchone()
              print("-------------------------------------------------------")
-             print(f"Predicted Total Budget based on your spending habits: {data[0]:.2f}")
-             print(f"Predicted Monthly Budget based on your spending habits: {data[1]:.2f}")
-             if data[1] < 0 or data[0] < 0:
+             print(f"Predicted Total Budget: {data[0]:.2f}")
+             if budgets[1] != 0:
+                print(f"Predicted Monthly Budget: {data[1]:.2f}")
+             if (budgets[1] != 0 and data[1] < 0) or data[0] < 0:
                   print("You are spending way too quickly, be careful!")
              print("-------------------------------------------------------")
              print(f"Your daily net flow for the past week: {data[3]:.2f}")
              print(f"Daily spending limit: {data[2]:.2f}")
+   
              continue
 
 
