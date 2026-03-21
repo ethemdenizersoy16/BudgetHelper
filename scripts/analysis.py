@@ -30,7 +30,7 @@ def prediction(dataframe_t,stats, budgets, curs):
      if num_days < 2:
         struct_cumsum = dataframe_t['structured_cumilative_sum'].iloc[-1] if not dataframe_t.empty else 0
         expense_cumsum = dataframe_t['expense_cumilative_sum'].iloc[-1] if not dataframe_t.empty else 0
-        return [budgets[0] + total_spent, budgets[1]+ monthly_spent, 0.0]
+        return [budgets[0] + total_spent, budgets[1]+ monthly_spent, 0.0, 0]
 
      X = monthly_enteries['date_of_month'].values.reshape(-1,1)
 
