@@ -73,20 +73,20 @@ BudgetHelper operates via an interactive, continuous shell environment.
 ## List of Categories
 To avoid parsing errors, please provide the category name in quotes.
 
-|Category Name|
+| Category Name | Description |
 | :--- | :--- |
-|Income|
-|Groceries|
-|Rent & Utilities|  
-|Subscriptions|
-|Transportation| 
-|Education|
-|Hobbies|
-|Health & Care|
-|Entertainment|
-|Food|
-|Other|
-|Continous Income|
+| `Income` | Positive cash flow (e.g., one-time deposits or gifts). |
+| `Groceries` | Supermarket purchases and household essentials. |
+| `Rent & Utilities` | Fixed housing costs, electricity, water, internet. |  
+| `Subscriptions` | Recurring digital or physical services (e.g., VPN, streaming). |
+| `Transportation` | Public transit, fuel, or ride-sharing. | 
+| `Education` | School fees, books, and courses. |
+| `Hobbies` | Expenses for personal interests and recreation. |
+| `Health & Care` | Medical, pharmacy, and personal hygiene. |
+| `Entertainment` | Movies, games, events, and outings. |
+| `Food` | Dining out, restaurants, and cafes. |
+| `Other` | Miscellaneous or unclassified expenses. |
+| `Continous Income` | Regular, recurring positive cash flow (e.g., salary or monthly stipend). |
 
 ##  License
 
