@@ -91,15 +91,18 @@ def transaction_control(conn,curs,id_map):
              data = analysis.analysis(conn,curs)
              curs.execute("""SELECT total_budget, monthly_budget FROM budget WHERE id = 1""")
              budgets = curs.fetchone()
-             print("-------------------------------------------------------")
-             print(f"Predicted Total Budget: {data[0]:.2f}")
-             if budgets[1] != 0:
-                print(f"Predicted Monthly Budget: {data[1]:.2f}")
-             if (budgets[1] != 0 and data[1] < 0) or data[0] < 0:
-                  print("You are spending way too quickly, be careful!")
+             if budgets[0] != 0 or budgets[1] != 0:
+                print("-------------------------------------------------------")
+                if budgets[0] != 0:
+                 print(f"Predicted Total Budget: {data[0]:.2f}")
+                if budgets[1] != 0:
+                    print(f"Predicted Monthly Budget: {data[1]:.2f}")
+                if (budgets[1] != 0 and data[1] < 0) or (budgets[0] != 0 and data[0] < 0):
+                    print("You are spending way too quickly, be careful!")
              print("-------------------------------------------------------")
              print(f"Your daily net flow for the past week: {data[3]:.2f}")
-             print(f"Daily spending limit: {data[2]:.2f}")
+             if budgets[0] != 0:
+                print(f"Daily spending limit: {data[2]:.2f}")
    
              continue
 
