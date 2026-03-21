@@ -73,6 +73,8 @@ BudgetHelper operates via an interactive, continuous shell environment.
 ## List of Categories
 To avoid parsing errors, please provide the category name in quotes.
 
+|Category Name|
+| :--- | :--- |
 |Income|
 |Groceries|
 |Rent & Utilities|  
