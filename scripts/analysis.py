@@ -80,7 +80,7 @@ def prediction(dataframe_t,stats, budgets, curs):
 
 def get_statistics(dataframe_t):
      if dataframe_t.empty:
-         return [0,0]
+       return [0,0,0,0]
 
      recent_velocity = dataframe_t['7day_avarage'].iloc[-1]
 

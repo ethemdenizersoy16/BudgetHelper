@@ -64,13 +64,13 @@ def status(curs, purpose = 0):#0 is for general status, 1 is for warnings
             print(f"Monthly Spending Budget: {monthly_budget:.2f} | Remaining: {monthly_remaining:.2f}")
         print(f"Spent this month: {-1 * monthly_spent:.2f}")
      if monthly_budget > 0 and monthly_remaining < 0:
-        print("""-------------------------------------------
-        WARNING: Monthly budget was exceeded!
-        -------------------------------------------""")
+        print("-------------------------------------------------------")
+        print("WARNING: Monthly budget was exceeded!e")
+
      if total_budget > 0 and total_remaining < 0:
-        print("""-------------------------------------------
-        CRITICAL WARNING: Total budget was exceeded!
-        -------------------------------------------""")
+        print("-------------------------------------------------------")
+        print("CRITICAL WARNING: Total budget was exceeded!")
+
      
      
 
@@ -130,6 +130,22 @@ def transaction_control(conn,curs,id_map):
         elif user_input[0].lower() == "delete":
              print("Exit entry mode to delete transactions")
              continue
+        elif user_input[0].lower() == "set_monthly_budget":
+             try:
+                new_budget = float(user_input[1])
+                curs.execute("UPDATE budget SET monthly_budget = ? WHERE id =1",(new_budget,))
+                conn.commit()
+             except ValueError:
+                 print("Please enter a valid budget")
+             continue
+        elif user_input[0].lower() == "set_budget":
+            try:
+                new_budget = float(user_input[1])
+                curs.execute("UPDATE budget SET total_budget = ? WHERE id =1",(new_budget,))
+                conn.commit()
+            except ValueError:
+                 print("Please enter a valid budget")
+            continue
 
         user_input[0] = id_map.get(user_input[0])
         if user_input[0] == None:
