@@ -70,6 +70,22 @@ BudgetHelper operates via an interactive, continuous shell environment.
 | `back` | Exits transaction entry mode. |
 | `quit` / `exit` | Closes the application securely. |
 
+## List of Categories
+To avoid parsing errors, please provide the category name in quotes.
+
+|Income|
+|Groceries|
+|Rent & Utilities|  
+|Subscriptions|
+|Transportation| 
+|Education|
+|Hobbies|
+|Health & Care|
+|Entertainment|
+|Food|
+|Other|
+|Continous Income|
+
 ##  License
 
-This project is licensed under the GNU General Public License v3.0.
+This project is licensed under the GNU AGPL-3.0
